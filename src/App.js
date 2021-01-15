@@ -1,18 +1,13 @@
 import './App.css';
-import {moviesServices} from "./sevices";
-import {useEffect} from "react";
-
-
+import {BaseLayout} from "./layouts";
+import {Home} from "./pages";
 
 function App() {
-    useEffect(() => {
-        moviesServices.getMovies().then(movies => console.log(movies));
-    }, []);
 
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <BaseLayout>
+        <Home/>
+    </BaseLayout>
   );
 }
 
