@@ -1,12 +1,19 @@
 import './App.css';
 import {BaseLayout} from "./layouts";
-import {Home} from "./pages";
+import {Home, MovieDetails, ErrorPage} from "./pages";
+import {Switch, Route, Redirect} from "react-router-dom";
+
 
 function App() {
 
   return (
     <BaseLayout>
-        <Home/>
+        <Switch>
+            <Route exact path={'/'} render={() => <ErrorPage/>}/>
+            {/*<Route exact path={'/'} render={() => <Redirect/>}/>*/}
+            <Route path={'/movies'} render={() => <Home/>}/>
+            <Route path={'/movie/:id'} render={() => <MovieDetails/>}/>
+        </Switch>
     </BaseLayout>
   );
 }

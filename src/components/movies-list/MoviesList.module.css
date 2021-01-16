@@ -1,0 +1,25 @@
+.flewCardsWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.cardWrapper {
+    width: 30%;
+    height: 400px;
+    position: relative;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    min-width: 200px;
+    max-width: 280px;
+}
+
+.cardWrapperStyling {
+    background-color: white;
+    border: 1px solid lightsalmon;
+    border-radius: 10px;
+}
