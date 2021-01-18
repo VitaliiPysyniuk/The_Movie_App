@@ -1,0 +1,28 @@
+ .searchInput {
+     background-color: lightgray;
+     height: 100%;
+     border: none;
+     outline: none;
+     padding-left: 5px;
+     box-sizing: border-box;
+     font-size: 15px;
+ }
+
+ .flexWrapper {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+
+ .formStyling {
+     background-color: lightgray;
+     border-radius: 5px;
+     overflow: hidden;
+     height: 30px;
+ }
+
+ .searchImg {
+     width: 30px;
+     height: 30px;
+     outline: none;
+ }

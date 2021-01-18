@@ -1,7 +1,7 @@
 import './App.css';
 import {BaseLayout} from "./layouts";
 import {Home, MovieDetails, ErrorPage} from "./pages";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 
 function App() {

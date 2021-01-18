@@ -2,7 +2,8 @@ import React from "react";
 import {MovieCard} from "../movie-card/MovieCard";
 import styles from './MoviesList.module.css'
 
-export const MoviesList = ({movies, onMovieCardClick}) => {
+// export const MoviesList = ({moviesList: {movies}, onMovieCardClick}) => {
+    export const MoviesList = ({moviesList:{movies}, onMovieCardClick}) => {
     return (
       <div className={styles.flewCardsWrapper}>
           {movies.map((movie) => {

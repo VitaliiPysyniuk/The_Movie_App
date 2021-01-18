@@ -1,0 +1,1 @@
+export {MergeMoviesWithGenres} from './MergeMoviesWithGenres'

@@ -1,0 +1,16 @@
+.message {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.messageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

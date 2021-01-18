@@ -1,0 +1,25 @@
+.flexWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.titleStyling {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.infoTextStyling {
+    font-size: 25px;
+}
+
+.blockSizing {
+    width: fit-content;
+    margin: 10px;
+}
+
+.imgSizing {
+    width: 350px;
+    height: 550px;
+}

@@ -1,20 +1,21 @@
 import React, {useState, useEffect} from 'react'
-import {LoadingIndicator} from "../../components";
+import {LoadingIndicator, PaginationComp} from "../../components";
 import {genresServices, moviesServices} from "../../sevices";
 import {MoviesList} from "../../components";
 import {useHistory} from 'react-router-dom';
+import {MergeMoviesWithGenres} from "../../utilits";
 
 
 export const Home = () => {
-    const [moviesList, setMoviesList] = useState([]);
+    const [moviesList, setMoviesList] = useState({});
+    const [genresList, setGenresList] = useState([]);
     const [isLoading, setIsLoading] = useState(null);
 
     const history = useHistory();
 
-    const fetchMovies = async () => {
+    const fetchMovies = async (params) => {
         try {
-            const movies = await moviesServices.getMovies('/?page=363').then(({results}) => results);
-            return movies;
+            return await moviesServices.getMovies(params);
         } catch (e) {
             console.error(e)
         }
@@ -33,16 +34,10 @@ export const Home = () => {
     const fetchMoviesWithGenres = async () => {
         const fetches = [fetchMovies(), fetchGenres()];
         setIsLoading(true);
-        const [movies, allGenres] = await Promise.all(fetches);
-        const moviesWithGenres = movies.map((movie) => {
-            const genres = movie.genre_ids.map((id) => allGenres.find(({id : genreId}) => genreId === id));
-            return {
-                ...movie,
-                genres
-            };
-        });
+        const [moviesData, genres] = await Promise.all(fetches);
+        setMoviesList(MergeMoviesWithGenres(moviesData, genres));
         setIsLoading(false);
-        setMoviesList(moviesWithGenres);
+        setGenresList(genres);
     };
 
     useEffect(() => {
@@ -53,11 +48,25 @@ export const Home = () => {
         history.push(`/movie/${id}`);
     }
 
+    const changeMoviesPage = async (page) => {
+        setIsLoading(true);
+        let movies = await fetchMovies({page});
+        setMoviesList(MergeMoviesWithGenres(movies, genresList));
+        setIsLoading(false)
+    };
+
+
     return (
         <div>
-            {// todo no movies loaded error) //
-            }
-            {isLoading || isLoading === null ? <LoadingIndicator/>: <MoviesList movies={moviesList} onMovieCardClick={onMovieCardClick}/>}
+            {isLoading || isLoading === null ? <LoadingIndicator/>
+                : <div>
+                    <MoviesList moviesList={moviesList} onMovieCardClick={onMovieCardClick}/>
+                    <PaginationComp changeMoviesPage={changeMoviesPage}
+                                    movieInfo={{page: moviesList.page,
+                                                total_pages:
+                                                moviesList.total_pages}
+                                    }/>
+                </div>}
         </div>
     )
 }
