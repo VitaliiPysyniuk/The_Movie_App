@@ -1,0 +1,1 @@
+export {setSearchWord} from './searchWordCreator';
